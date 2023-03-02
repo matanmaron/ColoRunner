@@ -14,9 +14,14 @@ namespace ColoRunner
             UpdateTimer(0);
         }
 
-        public void UpdateTimer(int s)
+        public void UpdateTimer(int seconds)
         {
-            timerText.text = $"Time: {s.ToString("D2")}";
+            timerText.text = $"Time: {seconds.ToString("D2")}";
+        }
+
+        public void ShowScore(int score)
+        {
+            timerText.text = $"Score: {score.ToString("D2")}%";
         }
     }
 }
