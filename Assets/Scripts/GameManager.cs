@@ -3,6 +3,7 @@ using Cysharp.Threading.Tasks.Triggers;
 using System;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace ColoRunner
 {
@@ -16,7 +17,7 @@ namespace ColoRunner
         [SerializeField] Transform powerUpParent;
         private float timer = 0;
         private int seconds = 0;
-        private int perfectScore = 29;
+        private int perfectScore = 31;
         private bool isGameRunning = true;
 
         private void Awake()
@@ -41,6 +42,10 @@ namespace ColoRunner
                     seconds = s;
                     uiCanvas.UpdateTimer(seconds);
                 }
+            }
+            if (Input.GetKeyUp(KeyCode.Space))
+            {
+                SceneManager.LoadScene(0);
             }
         }
 
@@ -70,7 +75,7 @@ namespace ColoRunner
             {
                 float randTime = UnityEngine.Random.Range(0.05f, 1.5f);
                 await UniTask.Delay(TimeSpan.FromSeconds(randTime));
-                RunnerColors randPosition = (RunnerColors)UnityEngine.Random.Range(0, (int)Enum.GetValues(typeof(RunnerColors)).Cast<RunnerColors>().Max());
+                RunnerColors randPosition = (RunnerColors)UnityEngine.Random.Range(0, (int)Enum.GetValues(typeof(RunnerColors)).Cast<RunnerColors>().Max()+1);
                 ShowPowerUp(randPosition);
             }
         }

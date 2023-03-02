@@ -21,7 +21,7 @@ namespace ColoRunner
             {
                 Debug.LogError("CANNOT FIND playerObject MeshRenderer");
             }
-            color = (RunnerColors)UnityEngine.Random.Range(0, (int)Enum.GetValues(typeof(RunnerColors)).Cast<RunnerColors>().Max());
+            color = (RunnerColors)UnityEngine.Random.Range(0, (int)Enum.GetValues(typeof(RunnerColors)).Cast<RunnerColors>().Max()+1);
             switch (color)
             {
                 case RunnerColors.Red: m_MeshRenderer.materials = new Material[1] { redColor }; break;
