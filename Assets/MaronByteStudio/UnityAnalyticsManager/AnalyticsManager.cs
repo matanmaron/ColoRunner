@@ -23,6 +23,17 @@ namespace MaronByteStudio.AnalyticsManager
             }
         }
 
+        public void SendAnalyticsEvents(string eName, Dictionary<string, object> psKeyValue)
+        {
+            if (IsEditor)
+            {
+                Debug.Log($"[SendAnalyticsEvent] - ({eName})");
+                return;
+            }
+            AnalyticsResult res = Analytics.CustomEvent(eName, psKeyValue);
+            Debug.Log($"[SendAnalyticsEvents] - {res} ({eName})");
+        }
+
         public void SendAnalyticsEvent(string eName, string pKey, object pValue)
         {
             if (IsEditor)
@@ -40,6 +51,11 @@ namespace MaronByteStudio.AnalyticsManager
 
         public void SendAnalyticsEvent(string eName)
         {
+             if (IsEditor)
+            {
+                Debug.Log($"[SendAnalyticsEvent] - ({eName})");
+                return;
+            }
             AnalyticsResult res = Analytics.CustomEvent(eName);
             Debug.Log($"[SendAnalyticsEvent] - {res} ({eName})");
         }
